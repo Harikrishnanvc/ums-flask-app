@@ -1,0 +1,31 @@
+services:
+  user_management_system:
+    build: .
+    command: gunicorn core:app --workers 4 --bind 0.0.0.0:5000
+#    command: gunicorn core:app --workers 4 --bind 0.0.0.0:5000 -k uvicorn.workers.UvicornWorker
+    env_file:
+      - ./core/.env
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/user-management-system
+    networks:
+      - default
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - "./user_management_system:/var/lib/postgresql/data"
+    env_file:
+      - ./core/.env
+
+    networks:
+      - default
+
+networks:
+    default:
+
+volumes:
+    user_management_system:

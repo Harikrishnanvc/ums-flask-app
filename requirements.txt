@@ -1,0 +1,12 @@
+flask
+psycopg2-binary
+flask-sqlalchemy
+flask_swagger_ui
+flask-marshmallow
+marshmallow-sqlalchemy
+Flask-Script
+Flask-Migrate
+python-environ
+uvicorn[standard]
+gunicorn
+
